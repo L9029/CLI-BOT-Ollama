@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+echo "Pregunta cualquier cosa y te responderé." . PHP_EOL;
+
+// Bucle para recibir preguntas
+while (true) {
+    $pregunta = readline("> ");
+    
+    if (strtolower($pregunta) === 'salir' || strtolower($pregunta) === 'exit') {
+        echo "Saliendo del programa, gracias por usar a Oraculo." . PHP_EOL;
+        break;
+    } elseif (empty($pregunta)) {
+        echo "Por favor, escribe una pregunta, con mucho gusto la respondere." . PHP_EOL;
+        continue;
+    } elseif (strtolower($pregunta) === 'hola') {
+        echo "¡Hola! ¿Cómo puedo ayudarle hoy?" . PHP_EOL;
+        continue;
+    }
+
+    echo "Pensando en la respuesta..." . PHP_EOL;
+    
+    sleep(2); // Simula un tiempo de procesamiento
+
+    echo "Respuesta a tu pregunta: " . $pregunta . " es interesante." . PHP_EOL;
+    
+    echo "¿Tienes otra pregunta? (escribe 'salir' para terminar)" . PHP_EOL;
+}
