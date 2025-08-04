@@ -1,28 +1,34 @@
 #!/usr/bin/env php
 <?php
 
-echo "Pregunta cualquier cosa y te responderé." . PHP_EOL;
+require __DIR__ . '/../vendor/autoload.php';
+
+use App\FakeAiService; // Se importa la clase FakeAiService
+
+$aiService = new FakeAiService(); // Instancia del servicio de IA
+
+// Mensaje de bienvenida
+echo "Bienvenido a Oraculo, tu asistente de inteligencia artificial." . PHP_EOL;
+echo "Pregunte cualquier cosa y te responderé." . PHP_EOL;
 
 // Bucle para recibir preguntas
 while (true) {
     $pregunta = readline("> ");
-    
+
     if (strtolower($pregunta) === 'salir' || strtolower($pregunta) === 'exit') {
-        echo "Saliendo del programa, gracias por usar a Oraculo." . PHP_EOL;
-        break;
-    } elseif (empty($pregunta)) {
-        echo "Por favor, escribe una pregunta, con mucho gusto la respondere." . PHP_EOL;
-        continue;
-    } elseif (strtolower($pregunta) === 'hola') {
-        echo "¡Hola! ¿Cómo puedo ayudarle hoy?" . PHP_EOL;
-        continue;
+
+        $respuesta = $aiService->getResponse($pregunta) . PHP_EOL;
+
+        echo $respuesta; // Se muestra la respuesta de salida
+
+        break; // Sale del bucle si el usuario escribe 'salir' o 'exit'
     }
 
     echo "Pensando en la respuesta..." . PHP_EOL;
-    
-    sleep(2); // Simula un tiempo de procesamiento
 
-    echo "Respuesta a tu pregunta: " . $pregunta . " es interesante." . PHP_EOL;
+    $respuesta = $aiService->getResponse($pregunta); // Se obtiene la respuesta del servicio de IA
+
+    echo $respuesta . PHP_EOL; // Se muestra la respuesta
     
     echo "¿Tienes otra pregunta? (escribe 'salir' para terminar)" . PHP_EOL;
 }
