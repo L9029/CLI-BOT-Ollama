@@ -4,8 +4,10 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\FakeAiService; // Se importa la clase FakeAiService
+use App\OllamaAiService; // Se importa la clase OllamaAiService
 
-$aiService = new FakeAiService(); // Instancia del servicio de IA
+// $aiService = new FakeAiService(); // Instancia del servicio de IA
+$aiService = new OllamaAiService(); // Instancia del servicio de IA
 
 // Mensaje de bienvenida
 echo "Bienvenido a Oraculo, tu asistente de inteligencia artificial." . PHP_EOL;
